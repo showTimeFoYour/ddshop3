@@ -11,7 +11,19 @@
     <!--1 扫描WEB层下注解类,可以扫描到base-package的当前包以及子包的所有注解类-->
     <context:component-scan base-package="com.wdt.ddshop.web"/>
     <!--@RequestMapping @ResponseBody jackson转换成JSON-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 
     <!--视图解析器-->

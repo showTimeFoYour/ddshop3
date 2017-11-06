@@ -16,6 +16,6 @@ public class IndexAction {
 
     @RequestMapping("/")
     public String  index(){
-        return "login";
+        return "index";
     }
 }

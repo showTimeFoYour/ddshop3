@@ -1,0 +1,15 @@
+.icon-up{
+    background:url('../images/arrow_medium_up.png') no-repeat center center;
+}
+.icon-down{
+    background:url('../images/arrow_medium_down.png') no-repeat center center;
+}
+form table .label{
+    width: 20%;
+    text-align: right;
+}
+
+form table td{
+    border: 1px solid #eeeeee;
+    padding: 3px;
+}
