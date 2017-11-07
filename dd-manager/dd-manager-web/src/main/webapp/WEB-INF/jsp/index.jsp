@@ -62,7 +62,7 @@
         $tree.tree({
             onClick: function (node) {
                 //     alert(node.text);  // 在用户点击的时候提示
-                console.log(node);
+
                 var title = node.text;
                 var href = node.attributes.href;
 
