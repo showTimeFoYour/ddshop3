@@ -5,8 +5,11 @@ import com.wdt.ddshop.common.dto.Result;
 import com.wdt.ddshop.dao.TbItemCustomMapper;
 import com.wdt.ddshop.dao.TbItemMapper;
 import com.wdt.ddshop.pojo.po.TbItem;
+import com.wdt.ddshop.pojo.po.TbItemExample;
 import com.wdt.ddshop.pojo.vo.TbItemCustom;
 import com.wdt.ddshop.service.ItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class ItemServiceImpl implements ItemService {
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private TbItemMapper itemDao;
@@ -59,4 +63,23 @@ public class ItemServiceImpl implements ItemService {
 
         return result;
     }
+
+    @Override
+    public int updateItemsById(List<Long> ids) {
+        int i=0;
+        try{
+            TbItem record=new TbItem();
+            record.setStatus( (byte)3);
+//         创建更新模板
+            TbItemExample  example=new TbItemExample();
+            TbItemExample.Criteria criteria = example.createCriteria();
+            criteria.andIdIn(ids);
+            i=itemDao.updateByExampleSelective(record,example);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
+
+}
 }
