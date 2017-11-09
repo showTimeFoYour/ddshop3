@@ -22,7 +22,11 @@
     WHERE  i.status != 3
     <choose>
       <when test="order != null and order.sort != null and order.order !=null">
-        ORDER BY i.${order.sort} ${order.order}
+        <foreach collection="order.orderParams"  open="order by" separator="," close="" item="item">
+         <if test='item.indexOf("sellPoint")!=-1'>${item}</if>
+            <if test='item.indexOf("sellPoint")==-1'>i.${item}</if>
+        </foreach>
+--           CONVERT (i.${item} USING  gbk)
 
       </when>
  <otherwise>

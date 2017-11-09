@@ -78,16 +78,22 @@
     $('#tb').datagrid({
 
         url: 'itemsByPage',
-        pagination: true, striped: true,
-        rownumbers: true,
-        fit: true,
-        pageSize: 20,
+        multiSort:true,// 允许多列排序
+        pagination: true, //分页栏显示
+        striped: true,//隔行变色
+        rownumbers: true,//显示第几列
+        fit: true,//调整面板屏幕
+        pageSize: 20, //初始分页列表大小
         pageList: [20, 30, 50],
         toolbar: toolbar,
+        /**
+         * columns 工具栏
+         *
+         */
         columns: [[{field: 'ck', checkbox: true},
-            {field: 'id', title: '商品编号', width: 100,sortable:true},
+            {field: 'id', title: '商品编号', width: 100},
             {field: 'title', title: '商品名称', width: 100,sortable:true},
-            {field: 'sellPoint', title: '商品卖点', width: 100},
+            {field: 'sellPoint', title: '商品卖点', width: 100,sortable:true},
             {field: 'priceView', title: '价格', width: 100},
             {field: 'catName', title: '商品分类', width: 100},
             {field: 'created', title: '创建时间', width: 100,formatter:function(value,row,index){
