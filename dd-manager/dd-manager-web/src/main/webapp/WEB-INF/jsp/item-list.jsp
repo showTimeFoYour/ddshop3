@@ -81,14 +81,14 @@
         pagination: true, striped: true,
         rownumbers: true,
         fit: true,
-        pageSize: 10,
-        pageList: [10, 30, 50],
+        pageSize: 20,
+        pageList: [20, 30, 50],
         toolbar: toolbar,
         columns: [[{field: 'ck', checkbox: true},
             {field: 'id', title: '商品编号', width: 100},
             {field: 'title', title: '商品名称', width: 100},
             {field: 'sellPoint', title: '商品卖点', width: 100},
-            {field: 'price', title: '价格', width: 100},
+            {field: 'priceView', title: '价格', width: 100},
             {field: 'catName', title: '商品分类', width: 100},
             {field: 'created', title: '创建时间', width: 100,formatter:function(value,row,index){
                 return moment(value).format('LL');

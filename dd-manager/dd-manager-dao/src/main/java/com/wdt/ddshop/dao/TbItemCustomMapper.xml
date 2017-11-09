@@ -4,13 +4,13 @@
 
   <sql id="Base_Column_List" >
     i.id, i.title, i.sell_point as sellPoint, i.price,
-     i.num, i.barcode, i.image, i.cid, i.status, i.created, i.updated,
+     i.num, i.barcode, i.image, i.cid, i.status, i.created, i.updated,FORMAT(i.price/100,2) as priceView,
      c.name as catName
   </sql>
 
   <select id="countItems" resultType="_int">
     select count(1)
-    from tb_item
+    from tb_item i
      WHERE  i.status != 3
   </select>
 
