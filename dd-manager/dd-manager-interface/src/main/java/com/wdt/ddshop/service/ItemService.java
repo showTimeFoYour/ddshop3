@@ -1,5 +1,6 @@
 package com.wdt.ddshop.service;
 
+import com.wdt.ddshop.common.dto.Order;
 import com.wdt.ddshop.common.dto.Page;
 import com.wdt.ddshop.common.dto.Result;
 import com.wdt.ddshop.pojo.po.TbItem;
@@ -12,7 +13,7 @@ public interface ItemService {
 
     List<TbItem> listItems();
 
-    Result<TbItemCustom> listItemsByPage(Page page);
+    Result<TbItemCustom> listItemsByPage(Page page,Order order);
 
     int updateItemsById(List<Long> ids);
 }

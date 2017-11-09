@@ -1,5 +1,6 @@
 package com.wdt.ddshop.web;
 
+import com.wdt.ddshop.common.dto.Order;
 import com.wdt.ddshop.common.dto.Page;
 import com.wdt.ddshop.common.dto.Result;
 import com.wdt.ddshop.pojo.po.TbItem;
@@ -51,10 +52,10 @@ logger.error(e.getMessage(),e);
     }
     @RequestMapping("/itemsByPage")
     @ResponseBody
-    public Result<TbItemCustom> getItemsByPage(Page page){
+    public Result<TbItemCustom> getItemsByPage(Page page, Order order){
         Result<TbItemCustom> result=null;
         try {
-            result = itemService.listItemsByPage(page);
+            result = itemService.listItemsByPage(page,order);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.wdt.ddshop.service.impl;
 
+import com.wdt.ddshop.common.dto.Order;
 import com.wdt.ddshop.common.dto.Page;
 import com.wdt.ddshop.common.dto.Result;
 import com.wdt.ddshop.dao.TbItemCustomMapper;
@@ -49,13 +50,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Result<TbItemCustom> listItemsByPage(Page page) {
+    public Result<TbItemCustom> listItemsByPage(Page page,Order order) {
         Result<TbItemCustom> result = null;
         try {
             result = new Result<>();
             int total=itemCustomDao.countItems();
             result.setTotal(total);
-           List<TbItemCustom> rows =itemCustomDao.listItemCustomByPage(page);
+           List<TbItemCustom> rows =itemCustomDao.listItemCustomByPage(page,order);
             result.setRows(rows);
         }catch (Exception e){
             e.printStackTrace();
