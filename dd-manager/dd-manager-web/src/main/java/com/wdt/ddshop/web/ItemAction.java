@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 @Scope("prototype")
 public class ItemAction {
-   private Logger logger=LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private ItemService itemService;
@@ -47,33 +47,35 @@ public class ItemAction {
         try {
             list = itemService.listItems();
         } catch (Exception e) {
-logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
         return list;
     }
+
     @RequestMapping("/itemsByPage")
     @ResponseBody
-    public Result<TbItemCustom> getItemsByPage(Page page, Order order,TbItemQuery query){
-        Result<TbItemCustom> result=null;
+    public Result<TbItemCustom> getItemsByPage(Page page, Order order, TbItemQuery query) {
+        Result<TbItemCustom> result = null;
         try {
-            result = itemService.listItemsByPage(page,order,query);
+            result = itemService.listItemsByPage(page, order, query);
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
         return result;
     }
-    @ResponseBody
-    @RequestMapping(value = "items/bacth",method = RequestMethod.POST)
-    public  int getBacth(@RequestParam("ids[]")List<Long>ids){
-int i=0;
-try{
-    i=itemService.updateItemsById(ids);
 
-}catch (Exception e){
-logger.error(e.getMessage(),e);
-e.printStackTrace();
-}
+    @ResponseBody
+    @RequestMapping(value = "items/bacth", method = RequestMethod.POST)
+    public int getBacth(@RequestParam("ids[]") List<Long> ids) {
+        int i = 0;
+        try {
+            i = itemService.updateItemsById(ids);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
         return i;
 
 

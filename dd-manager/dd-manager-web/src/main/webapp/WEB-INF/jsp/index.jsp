@@ -58,44 +58,8 @@
 <script src="js/common.js"></script>
 <!-- 自定义js -->
 <script>
-    //ddshop.registerMenuEvent();
-    $(function () {
-        var $tree = $("#menu .easyui-tree");
-        //  console.log($tree);
-        $tree.tree({
-            onClick: function (node) {
-                //     alert(node.text);  // 在用户点击的时候提示
+    ddshop.registerMenuEvent();
 
-                var title = node.text;
-                var href = node.attributes.href;
-
-                var tab = $('#tab').tabs('getSelected');
-                var index = $('#tab').tabs('getTabIndex', tab);
-                if($('#tab').tabs('exists',title)){
-                    //跳转到指定的选项卡页面
-                    $('#tab').tabs('select', title);
-
-                }else{
-                    $("#tab").tabs('add', {
-                        title: title,
-                        href: href,
-                        closable: true
-
-                    });
-                }
-
-
-
-
-
-            }
-
-
-
-    });
-
-
-    });
 </script>
 </body>
 </html>

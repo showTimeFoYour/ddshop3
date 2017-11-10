@@ -36,7 +36,7 @@
 <script>
 
     function add() {
-        console.log("add");
+        ddshop.addTabs('新增商品', 'item-add');
     }
     function remove() {
 
