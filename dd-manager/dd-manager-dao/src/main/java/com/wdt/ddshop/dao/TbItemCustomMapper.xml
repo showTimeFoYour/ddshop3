@@ -11,7 +11,14 @@
   <select id="countItems" resultType="_int">
     select count(1)
     from tb_item i
-     WHERE  i.status != 3
+   <where>i.status != 3
+       <if test="query != null and query.title !=null and query.title !=''">
+          and i.title LIKE '%${query.title}%'
+       </if>
+       <if test="query != null and query.status !=null and query.status !='0'">
+         and  i.status = #{query.status}
+       </if>
+   </where>
   </select>
 
   <select id="listItemCustomByPage" resultType="com.wdt.ddshop.pojo.vo.TbItemCustom">
@@ -20,10 +27,16 @@
     FROM tb_item i
     LEFT JOIN tb_item_cat c   ON i.cid = c.id
     WHERE  i.status != 3
+      <if test="query != null and query.title !=null and query.title !=''">
+          and i.title LIKE '%${query.title}%'
+      </if>
+      <if test="query != null and query.status !=null and query.status !=''">
+          and  i.status = #{query.status}
+      </if>
     <choose>
       <when test="order != null and order.sort != null and order.order !=null">
         <foreach collection="order.orderParams"  open="order by" separator="," close="" item="item">
-         <if test='item.indexOf("sellPoint")!=-1'>${item}</if>
+         <if test='item.indexOf("sellPoint")!=-1'>#{item}</if>
             <if test='item.indexOf("sellPoint")==-1'>i.${item}</if>
         </foreach>
 --           CONVERT (i.${item} USING  gbk)

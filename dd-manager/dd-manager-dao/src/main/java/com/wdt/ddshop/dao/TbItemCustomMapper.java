@@ -6,9 +6,10 @@ import com.wdt.ddshop.pojo.vo.TbItemCustom;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbItemCustomMapper {
-    int countItems();
+    int countItems(Map<String,Object> map);
 
-    List<TbItemCustom> listItemCustomByPage(@Param("page") Page page,@Param("order") Order order);
+    List<TbItemCustom> listItemCustomByPage(Map<String,Object> map);
 }

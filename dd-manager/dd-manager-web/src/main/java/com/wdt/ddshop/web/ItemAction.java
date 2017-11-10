@@ -5,6 +5,7 @@ import com.wdt.ddshop.common.dto.Page;
 import com.wdt.ddshop.common.dto.Result;
 import com.wdt.ddshop.pojo.po.TbItem;
 import com.wdt.ddshop.pojo.vo.TbItemCustom;
+import com.wdt.ddshop.pojo.vo.TbItemQuery;
 import com.wdt.ddshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,10 +53,10 @@ logger.error(e.getMessage(),e);
     }
     @RequestMapping("/itemsByPage")
     @ResponseBody
-    public Result<TbItemCustom> getItemsByPage(Page page, Order order){
+    public Result<TbItemCustom> getItemsByPage(Page page, Order order,TbItemQuery query){
         Result<TbItemCustom> result=null;
         try {
-            result = itemService.listItemsByPage(page,order);
+            result = itemService.listItemsByPage(page,order,query);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
             e.printStackTrace();

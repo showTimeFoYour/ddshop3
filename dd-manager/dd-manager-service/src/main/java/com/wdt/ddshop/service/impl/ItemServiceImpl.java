@@ -8,13 +8,16 @@ import com.wdt.ddshop.dao.TbItemMapper;
 import com.wdt.ddshop.pojo.po.TbItem;
 import com.wdt.ddshop.pojo.po.TbItemExample;
 import com.wdt.ddshop.pojo.vo.TbItemCustom;
+import com.wdt.ddshop.pojo.vo.TbItemQuery;
 import com.wdt.ddshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: DHC
@@ -50,13 +53,18 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Result<TbItemCustom> listItemsByPage(Page page,Order order) {
+    public Result<TbItemCustom> listItemsByPage(Page page,Order order,TbItemQuery query) {
         Result<TbItemCustom> result = null;
+        Map<String,Object> map=new HashMap<>();
+        map.put("page",page);
+        map.put("order",order);
+        map.put("query",query);
+
         try {
             result = new Result<>();
-            int total=itemCustomDao.countItems();
+            int total=itemCustomDao.countItems(map);
             result.setTotal(total);
-           List<TbItemCustom> rows =itemCustomDao.listItemCustomByPage(page,order);
+           List<TbItemCustom> rows =itemCustomDao.listItemCustomByPage(map);
             result.setRows(rows);
         }catch (Exception e){
             e.printStackTrace();
