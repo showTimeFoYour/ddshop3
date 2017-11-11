@@ -97,5 +97,29 @@
         }
 
     });
+    function  submitForm(){
+        $("#itemAddForm").form("submit",{
+            url:'item',
+            onSubmit:function(){
+                $("#price").val($("#priceView").val()*100);
+                var isValid = $(this).form('validate');
+                if (!isValid){
+                    $.messager.progress('close');	// 如果表单是无效的则隐藏进度条
+                }
+                return isValid;	// 返回false终止表单提交
+            },
+            success:function () {
+
+                $.messager.progress('close');	// 如果提交成功则隐藏进度条
+
+            }
+
+        });
+    }
+    function clearForm(){
+        $("#itemAddForm").form("reset");
+        ue.setContent('商品描述');
+    }
+    
 
 </script>
