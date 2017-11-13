@@ -24,7 +24,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">商品价格：</td>
+                <td class="label">商品价格(元)：</td>
                 <td>
                     <input class="easyui-numberbox" type="text" id="priceView" name="priceView"
                            data-options="required:true,min:0,precision:2">
@@ -74,6 +74,10 @@
     </form>
 </div>
 <script>
+
+    var ue=UE.getEditor("container");
+
+
     $("#cid").combotree({
         url: 'itemCatList?parentId=0',
         required: true,
@@ -108,12 +112,16 @@
                 }
                 return isValid;	// 返回false终止表单提交
             },
-            success:function () {
+            success:function (data) {
+                if (data > 0) {
+                    $.messager.alert('温馨提示', '恭喜！添加商品成功！');
+                    ddshop.addTabs('查询商品', 'item-list');
+                     ddshop.closeTabs("新增商品");
 
-                $.messager.progress('close');	// 如果提交成功则隐藏进度条
+                    $.messager.progress('close');	// 如果提交成功则隐藏进度条
 
+                }
             }
-
         });
     }
     function clearForm(){

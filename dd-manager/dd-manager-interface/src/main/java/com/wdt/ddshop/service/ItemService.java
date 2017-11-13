@@ -14,7 +14,27 @@ public interface ItemService {
 
     List<TbItem> listItems();
 
+    /**
+     * 分页处理
+     * @param page
+     * @param order
+     * @param query
+     * @return
+     */
     Result<TbItemCustom> listItemsByPage(Page page,Order order,TbItemQuery query);
 
+    /**
+     * 批量修改
+     * @param ids
+     * @return
+     */
     int updateItemsById(List<Long> ids);
+
+    /**
+     * 添加商品
+     * @param tbItem
+     * @param content
+     * @return
+     */
+    int saveItem(TbItem tbItem, String content);
 }
