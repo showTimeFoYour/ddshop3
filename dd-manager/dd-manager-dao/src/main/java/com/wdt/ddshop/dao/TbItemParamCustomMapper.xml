@@ -5,7 +5,7 @@
    p.id, p.item_cat_id, p.created, p.updated, c.name as catName
    </sql>
   <sql id="Blob_Column_List">
-    p.param_data
+    p.param_data as paramData
   </sql>
   <select id="countItemParams" resultType="_int">
     select count(1)

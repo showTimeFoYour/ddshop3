@@ -75,9 +75,7 @@
 </div>
 <script>
 
-   if(typeof ue == "object"){
-       ue.destroy();
-   };
+  UE.delEditor("container");
     var ue=UE.getEditor("container");
 
 
@@ -131,6 +129,6 @@
         $("#itemAddForm").form("reset");
         ue.setContent('商品描述');
     }
-    
+
 
 </script>

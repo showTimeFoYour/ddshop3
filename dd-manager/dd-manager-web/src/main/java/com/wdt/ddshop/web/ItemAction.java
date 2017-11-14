@@ -55,6 +55,13 @@ public class ItemAction {
         return list;
     }
 
+    /**
+     * 分页处理
+     * @param page
+     * @param order
+     * @param query
+     * @return
+     */
     @RequestMapping("/itemsByPage")
     @ResponseBody
     public Result<TbItemCustom> getItemsByPage(Page page, Order order, TbItemQuery query) {
@@ -91,6 +98,13 @@ public class ItemAction {
 
 
     }
+
+    /**
+     * 新增商品
+     * @param tbItem
+     * @param content
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/item")
    public  int  save(TbItem tbItem,String content){
