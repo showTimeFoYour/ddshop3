@@ -75,6 +75,7 @@
 </div>
 <script>
 
+   console.log(typeof ue);
     var ue=UE.getEditor("container");
 
 

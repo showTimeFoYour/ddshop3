@@ -28,7 +28,7 @@ public interface ItemService {
      * @param ids
      * @return
      */
-    int updateItemsById(List<Long> ids);
+    int updateItemsById(List<Long> ids,String url);
 
     /**
      * 添加商品

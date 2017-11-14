@@ -7,21 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="toolbarParam">
-    <div style="padding: 5px; background-color: #fff;">
+
 
 
         <div>
-            <button class="easyui-linkbutton" type="button" onclick="add()"data-options="iconCls:'icon-add',plain:true">新增</button>
-            <button onclick="edit()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</button>
-            <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除
-            </button>
-            <button onclick="down()" class="easyui-linkbutton" data-options="iconCls:'icon-down',plain:true">下架</button>
-            <button onclick="up()" class="easyui-linkbutton" data-options="iconCls:'icon-up',plain:true">上架</button>
-
+            <button type="button" onclick="addParam()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
+            <button type="button" onclick="editParam()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</button>
+            <button type="button" onclick="removeParam()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</button>
         </div>
 
 
-    </div>
+
 
 </div>
 

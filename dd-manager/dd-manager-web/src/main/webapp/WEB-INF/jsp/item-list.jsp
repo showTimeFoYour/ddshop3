@@ -41,7 +41,7 @@
     function remove() {
 
         var selections = $('#tb').datagrid('getSelections');
-//        $.messager.alert(selections);
+         console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录
             $.messager.alert('提示', '请至少选中一条记录！');
@@ -51,6 +51,7 @@
             if (r) {
                 var ids = [];
                 for (var i = 0; i < selections.length; i++) {
+
                     ids.push(selections[i].id);
                 }
                 $.post(
@@ -69,13 +70,72 @@
         });
     }
     function edit() {
-        console.log("edit");
     }
     function up() {
-        console.log("up");
+        var selections = $('#tb').datagrid('getSelections');
+      //  console.log(selections);
+        if (selections.length == 0) {
+            //客户没有选择记录
+            $.messager.alert('提示', '请至少选中一条记录！');
+            return;
+        }
+       else{
+                var ids = [];
+                for (var i = 0; i < selections.length; i++) {
+                    //console.log(selections[i].status);
+                      if(selections[i].status ==1){
+                          $.messager.alert('提示', '请不要选择已经上架的记录！');
+                          return;
+                      }
+                    ids.push(selections[i].id);
+                }
+                $.post(
+                    //  //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                    'items/up',
+                    //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                    {'ids[]': ids},
+                    //callback:后台处理成功的回调函数，相当于success，function类型
+                    function (data) {
+                        $("#tb").datagrid("reload");
+                    },
+                    //返回数据类型
+                    'json'
+                );
+        }
+
+
     }
     function down() {
-        console.log("down");
+        var selections = $('#tb').datagrid('getSelections');
+        //  console.log(selections);
+        if (selections.length == 0) {
+            //客户没有选择记录
+            $.messager.alert('提示', '请至少选中一条记录！');
+            return;
+        }
+        else{
+            var ids = [];
+            for (var i = 0; i < selections.length; i++) {
+                //console.log(selections[i].status);
+                if(selections[i].status ==2){
+                    $.messager.alert('提示', '请不要选择已经下架的记录！');
+                    return;
+                }
+                ids.push(selections[i].id);
+            }
+            $.post(
+                //  //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                'items/down',
+                //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                {'ids[]': ids},
+                //callback:后台处理成功的回调函数，相当于success，function类型
+                function (data) {
+                    $("#tb").datagrid("reload");
+                },
+                //返回数据类型
+                'json'
+            );
+        }
     }
     function searchForm(){
 
