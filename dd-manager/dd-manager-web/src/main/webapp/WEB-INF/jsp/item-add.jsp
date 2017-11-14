@@ -75,7 +75,9 @@
 </div>
 <script>
 
-   console.log(typeof ue);
+   if(typeof ue == "object"){
+       ue.destroy();
+   };
     var ue=UE.getEditor("container");
 
 
