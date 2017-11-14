@@ -98,6 +98,54 @@
             if(!isleaf){
                 $.messager.alert("警告","请选中最终的类别！","warning");
                 return false;
+            }else{
+
+                console.log(node);
+                //如果是叶子节点就发送ajax请求，请求查询tb_item_param
+                $.get(
+                    //url
+                    'itemParam/query/'+node.id,
+                    //success
+                    function(data){
+                        //console.log(typeof(data));
+                        var $outerTd = $('#itemAddForm .paramsShow td').eq(1);
+                        var $ul = $('<ul>');
+                        $outerTd.empty().append($ul);
+                        if (data) {
+                            var paramData = data.paramData;
+                            paramData = JSON.parse(paramData);
+                            //遍历分组
+                            $.each(paramData, function (i, e) {
+                                var groupName = e.group;
+                                var $li = $('<li>');
+                                var $table = $('<table>');
+                                var $tr = $('<tr>');
+                                var $td = $('<td colspan="2" class="group">' + groupName + '</td>');
+
+                                $ul.append($li);
+                                $li.append($table);
+                                $table.append($tr);
+                                $tr.append($td);
+                                debugger;
+                                //遍历分组项
+                                if (e.params) {
+                                    $.each(e.params, function (_i, paramName) {
+                                        var _$tr = $('<tr><td class="param">' + paramName + '</td><td><input></td></tr>');
+                                        $table.append(_$tr);
+                                    });
+                                }
+                            });
+
+                            $("#itemAddForm .paramsShow").show();
+                        } else {
+
+                            $("#itemAddForm .paramsShow").hide();
+                            $("#itemAddForm .paramsShow td").eq(1).empty();//第二个td
+                        }
+
+
+                    }
+                );
             }
         }
 
@@ -107,6 +155,39 @@
             url:'item',
             onSubmit:function(){
                 $("#price").val($("#priceView").val()*100);
+                //获取参数规格部分
+                var paramsJson = [];
+                var $liList = $('#itemAddForm .paramsShow li');
+                $liList.each(function (i, e) {
+                    $group = $(e).find('.group');
+                    var groupName = $group.text();
+
+                    var params = [];
+                    var $trParams = $(e).find('tr').has('td.param');
+                    $trParams.each(function (_i, _e) {
+                        var $oneDataTr = $(_e);
+                        var $keyTd = $oneDataTr.find('.param');
+                        var $valueInput = $keyTd.next('td').find('input');
+                        var key = $keyTd.text();
+                        var value = $valueInput.val();
+
+                        var _o = {
+                            k: key,
+                            v: value
+                        };
+                        params.push(_o);
+                    });
+                    var o = {};
+                    o.group = groupName;
+                    o.params = params;
+                    paramsJson.push(o);
+                });
+                paramsJson = JSON.stringify(paramsJson);
+                $('#paramData').val(paramsJson);
+                //做表单校验，表单上所有字段全部校验通过才能返回true，才会提交表单，
+                //如果有任意一个字段没有校验通过，返回false，不会提交表单
+
+
                 var isValid = $(this).form('validate');
                 if (!isValid){
                     $.messager.progress('close');	// 如果表单是无效的则隐藏进度条

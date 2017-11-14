@@ -11,12 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.URI;
 import java.util.List;
 
 /**
@@ -107,10 +105,10 @@ public class ItemAction {
      */
     @ResponseBody
     @RequestMapping("/item")
-   public  int  save(TbItem tbItem,String content){
+   public  int  save(TbItem tbItem,String content,String paramData){
         int i=0;
         try{
-            i=itemService.saveItem(tbItem,content);
+            i=itemService.saveItem(tbItem,content,paramData);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();

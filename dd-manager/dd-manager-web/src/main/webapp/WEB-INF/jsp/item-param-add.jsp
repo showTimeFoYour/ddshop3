@@ -80,36 +80,44 @@
              * 获取参数组
              * */
             var $params = $(eg).parent().find(".item-param [name=param]");
-          //遍历参数组
+            //遍历参数组
 
             $params.each(function (i, ep) {
 
                 var value = $(ep).val();
-                if ($.trim(value).length > 0){
+                if ($.trim(value).length > 0) {
                     paramValues.push(value);
                 }
             });
-            var val=$(eg).val();
-            var o={};
-            o.group=val;
-            o.params=paramValues;
+            var val = $(eg).val();
+            var o = {};
+            o.group = val;
+            o.params = paramValues;
             /**
              * $.trim(val)去掉val 首尾空格
              * */
-            if($.trim(val).length > 0 && paramValues.length > 0){
+            if ($.trim(val).length > 0 && paramValues.length > 0) {
                 groupValues.push(o);
             }
 
         });
-      console.log(groupValues);
+        console.log(groupValues);
 
-      var cid = $('#cid').combotree('getValue');
+        var cid = $('#cid').combotree('getValue');
         var url = 'item/param/save/' + cid;
         var jsonStr = JSON.stringify(groupValues);
-        $.post(url, {paramData: jsonStr}, function(data){
-            console.log('保存成功');
-            console.log(data);
-        });
+        $.post(
+            url,
+            {paramData: jsonStr},
+            function (data) {
+                if (data > 0) {
+                    $.messager.alert('温馨提示', '保存成功！');
+                    ddshop.addTabs('规格参数', 'item-param-list');
+                    ddshop.closeTabs("新增商品规格表");
+                }
+
+            }
+        );
     }
 
     /**

@@ -7,9 +7,11 @@ import com.wdt.ddshop.common.util.IDUtils;
 import com.wdt.ddshop.dao.TbItemCustomMapper;
 import com.wdt.ddshop.dao.TbItemDescMapper;
 import com.wdt.ddshop.dao.TbItemMapper;
+import com.wdt.ddshop.dao.TbItemParamItemMapper;
 import com.wdt.ddshop.pojo.po.TbItem;
 import com.wdt.ddshop.pojo.po.TbItemDesc;
 import com.wdt.ddshop.pojo.po.TbItemExample;
+import com.wdt.ddshop.pojo.po.TbItemParamItem;
 import com.wdt.ddshop.pojo.vo.TbItemCustom;
 import com.wdt.ddshop.pojo.vo.TbItemQuery;
 import com.wdt.ddshop.service.ItemService;
@@ -40,6 +42,8 @@ public class ItemServiceImpl implements ItemService {
     private TbItemMapper itemDao;
     @Autowired
     private TbItemCustomMapper itemCustomDao;
+    @Autowired
+    private TbItemParamItemMapper itemParamItemDao;
 
     @Override
     public TbItem getById(Long itemId) {
@@ -126,7 +130,7 @@ public class ItemServiceImpl implements ItemService {
      */
  @Transactional
     @Override
-    public int saveItem(TbItem tbItem, String content) {
+    public int saveItem(TbItem tbItem, String content,String paramData) {
         int i=0;
         try{
             Long id= IDUtils.getItemId();
@@ -141,6 +145,15 @@ public class ItemServiceImpl implements ItemService {
             desc.setItemId(id);
             desc.setItemDesc(content);
             i+=itemDescDao.insert(desc);
+            TbItemParamItem itemParamItem=new TbItemParamItem();
+            itemParamItem.setCreated(new Date());
+            itemParamItem.setUpdated(new Date());
+            itemParamItem.setItemId(id);
+            itemParamItem.setParamData(paramData);
+            i+=itemParamItemDao.insert(itemParamItem);
+
+
+
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
