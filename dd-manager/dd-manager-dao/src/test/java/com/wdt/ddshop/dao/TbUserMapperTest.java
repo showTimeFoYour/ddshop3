@@ -22,8 +22,8 @@ public class TbUserMapperTest {
 
     @Test
     public void testSelectByPrimaryKey() throws Exception {
-        TbUser tbUser = userDao.selectByPrimaryKey(5L);
-        System.out.println(tbUser);
-    }
+//        TbUser tbUser = userDao.selectByPrimaryKey(5L);
+//        System.out.println(tbUser);
+   }
 
 }

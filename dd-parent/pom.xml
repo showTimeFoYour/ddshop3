@@ -10,6 +10,7 @@
     <modules>
         <module>../dd-common</module>
         <module>../dd-manager</module>
+        <module>../dd-ftpupload</module>
     </modules>
     <packaging>pom</packaging>
 
