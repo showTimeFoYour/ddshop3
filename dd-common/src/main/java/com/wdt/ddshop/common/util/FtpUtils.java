@@ -1,13 +1,20 @@
 package com.wdt.ddshop.common.util;
 
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
 
 import java.io.*;
 
+/**
+ * User: DHC
+ * Date: 2017/9/12
+ * Time: 10:04
+ * Version:V1.0
+ */
 public class FtpUtils {
+
     /**
      * Description: 向FTP服务器上传文件
      * @param host FTP服务器hostname
@@ -21,13 +28,12 @@ public class FtpUtils {
      * @return 成功返回true，否则返回false
      */
     public static boolean uploadFile(String host, int port, String username, String password, String basePath,
-                                     String filePath, String filename, InputStream input) throws IOException {
+                                     String filePath, String filename, InputStream input) {
         boolean result = false;
-
         FTPClient ftp = new FTPClient();
         try {
             int reply;
-            ftp.connect(host,port);// 连接FTP服务器
+            ftp.connect(host, port);// 连接FTP服务器
             // 如果采用默认端口，可以使用ftp.connect(host)的方式直接连接FTP服务器
             ftp.login(username, password);// 登录
             reply = ftp.getReplyCode();
@@ -125,6 +131,4 @@ public class FtpUtils {
         }
         return result;
     }
-
-
 }
