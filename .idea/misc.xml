@@ -2,6 +2,8 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/dd-manager/dd-manager-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dd-portal-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dd-protal" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -12,6 +14,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/dd-manage/dd-manager-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/dd-protal/pom.xml" />
       </set>
     </option>
   </component>

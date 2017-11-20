@@ -11,6 +11,8 @@
         <module>../dd-common</module>
         <module>../dd-manager</module>
         <module>../dd-ftpupload</module>
+        <module>../dd-portal-web</module>
+
     </modules>
     <packaging>pom</packaging>
 

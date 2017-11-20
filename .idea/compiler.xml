@@ -13,6 +13,7 @@
         <module name="dd-manager-pojo" />
         <module name="dd-manager-service" />
         <module name="dd-manager-web" />
+        <module name="dd-portal-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,8 @@
       <module name="dd-manager-service" target="1.8" />
       <module name="dd-manager-web" target="1.8" />
       <module name="dd-parent" target="1.8" />
+      <module name="dd-portal-web" target="1.8" />
+      <module name="dd-protal" target="1.8" />
       <module name="ddparent" target="1.8" />
     </bytecodeTargetLevel>
   </component>

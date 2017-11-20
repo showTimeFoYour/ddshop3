@@ -25,6 +25,7 @@ public class FileServiceImpl implements FileService {
         String basePath = PropKit.use(name).get("ftp.basePath");
         //创建文件路径：基础路径+文件路径+文件名+扩展名
         String filePath = new DateTime().toString("/yyyy/MM/dd");
+        //文件名包括扩展名
         String originalFilename = upfile.getOriginalFilename();
        //扩展名
         String fileType = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -39,11 +40,12 @@ public class FileServiceImpl implements FileService {
         boolean b = FtpUtils.uploadFile(host, port, username, password, basePath, filePath, newName, inputStream);
         System.out.println("+++++++++++++++++++++++++++++++++++++++" + b);
         if (b) {
+            map.clear();
             map.put("state", "SUCCESS");
             map.put("title", newName);
             map.put("original", originalFilename);
             map.put("type", fileType);
-            map.put("url",  filePath + "/" +newName);
+            map.put("url", filePath + "/" + newName);
             map.put("size", upfile.getSize());
         }
         return map;

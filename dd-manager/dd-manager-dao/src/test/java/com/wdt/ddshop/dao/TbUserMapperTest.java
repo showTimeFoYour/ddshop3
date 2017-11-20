@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * User: DHC
  * Date: 2017/11/3
@@ -24,6 +26,8 @@ public class TbUserMapperTest {
     public void testSelectByPrimaryKey() throws Exception {
 //        TbUser tbUser = userDao.selectByPrimaryKey(5L);
 //        System.out.println(tbUser);
+
+
    }
 
 }

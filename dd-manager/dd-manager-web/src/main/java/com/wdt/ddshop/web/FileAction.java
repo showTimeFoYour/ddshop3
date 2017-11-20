@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class FileAction {
         }
     }
     @RequestMapping(value = "/file/upload",method = RequestMethod.POST)
+    @ResponseBody
     public Map<String,Object> upload(MultipartFile upfile) throws IOException {
         Map<String,Object> map=fileService.uploadImages(upfile);
 

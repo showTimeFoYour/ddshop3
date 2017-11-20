@@ -10,5 +10,7 @@
     <file url="file://$PROJECT_DIR$/dd-manager/dd-manager-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dd-manager/dd-manager-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dd-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dd-portal-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dd-protal" charset="UTF-8" />
   </component>
 </project>

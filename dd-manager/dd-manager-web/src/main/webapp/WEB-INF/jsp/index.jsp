@@ -56,7 +56,17 @@
 
 <script src="js/ueditor/ueditor.config.js"></script>
 <script src="js/ueditor/ueditor.all.js"></script>
-
+//解决多图片上传问题
+<script>
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage') {
+            return 'http://localhost:8080/ddshop/file/upload';
+        }else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
 <!-- 自定义脚本 -->
 <script src="js/common.js"></script>
 <!-- 自定义js -->
@@ -64,5 +74,6 @@
     ddshop.registerMenuEvent();
 
 </script>
+
 </body>
 </html>
