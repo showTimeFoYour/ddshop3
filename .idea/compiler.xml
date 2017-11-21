@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="dd-common" />
         <module name="dd-ftpupload" />
+        <module name="dd-lucene" />
         <module name="dd-manager-dao" />
         <module name="dd-manager-interface" />
         <module name="dd-manager-pojo" />
@@ -19,6 +20,7 @@
     <bytecodeTargetLevel>
       <module name="dd-common" target="1.8" />
       <module name="dd-ftpupload" target="1.7" />
+      <module name="dd-lucene" target="1.7" />
       <module name="dd-manager" target="1.8" />
       <module name="dd-manager-dao" target="1.8" />
       <module name="dd-manager-interface" target="1.8" />

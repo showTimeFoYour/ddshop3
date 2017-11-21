@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dd-common/dd-common.iml" filepath="$PROJECT_DIR$/dd-common/dd-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/dd-ftpupload/dd-ftpupload.iml" filepath="$PROJECT_DIR$/dd-ftpupload/dd-ftpupload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dd-lucene/dd-lucene.iml" filepath="$PROJECT_DIR$/dd-lucene/dd-lucene.iml" />
       <module fileurl="file://$PROJECT_DIR$/dd-manager/dd-manager.iml" filepath="$PROJECT_DIR$/dd-manager/dd-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/dd-manager/dd-manager-dao/dd-manager-dao.iml" filepath="$PROJECT_DIR$/dd-manager/dd-manager-dao/dd-manager-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/dd-manager/dd-manager-interface/dd-manager-interface.iml" filepath="$PROJECT_DIR$/dd-manager/dd-manager-interface/dd-manager-interface.iml" />

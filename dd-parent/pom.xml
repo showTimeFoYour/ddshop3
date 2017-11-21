@@ -12,6 +12,7 @@
         <module>../dd-manager</module>
         <module>../dd-ftpupload</module>
         <module>../dd-portal-web</module>
+        <module>../dd-lucene</module>
 
     </modules>
     <packaging>pom</packaging>
