@@ -13,6 +13,7 @@
         <module>../dd-ftpupload</module>
         <module>../dd-portal-web</module>
         <module>../dd-lucene</module>
+        <module>../dd-search-web</module>
 
     </modules>
     <packaging>pom</packaging>

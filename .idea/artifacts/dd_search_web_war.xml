@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dd-search-web:war">
+    <output-path>$PROJECT_DIR$/dd-search-web/target</output-path>
+    <root id="archive" name="dd-search-web.war">
+      <element id="artifact" artifact-name="dd-search-web:war exploded" />
+    </root>
+  </artifact>
+</component>
