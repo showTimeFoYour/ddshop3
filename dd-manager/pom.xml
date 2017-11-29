@@ -68,15 +68,7 @@
         <artifactId>spring-test</artifactId>
         <scope>test</scope>
     </dependency>
-    <!--消息服务中间件-->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jms</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context-support</artifactId>
-    </dependency>
+
 
 
 

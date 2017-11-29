@@ -1,5 +1,6 @@
 package com.wdt.ddshop.web;
 
+import com.wdt.ddshop.common.dto.MessageResult;
 import com.wdt.ddshop.common.dto.Order;
 import com.wdt.ddshop.common.dto.Page;
 import com.wdt.ddshop.common.dto.Result;
@@ -11,9 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -28,6 +33,11 @@ import java.util.List;
 public class ItemAction {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    @Resource
+    private Destination topicDestination;
     @Autowired
     private ItemService itemService;
 
@@ -103,7 +113,7 @@ public class ItemAction {
      * @param content
      * @return
      */
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping("/item")
    public  int  save(TbItem tbItem,String content,String paramData){
         int i=0;
@@ -114,6 +124,29 @@ public class ItemAction {
             e.printStackTrace();
         }
         return  i;
+    }*/
+    @ResponseBody
+    @RequestMapping("/item")
+    public MessageResult saveItem(TbItem tbItem, String content, String paramData) {
+        MessageResult mr = new MessageResult();
+        try {
+            //1 保存商品
+            final Long itemId = itemService.saveItem(tbItem, content, paramData);
+            //2 发送消息
+            jmsTemplate.send(topicDestination, new MessageCreator() {
+                @Override
+                public Message createMessage(Session session) throws JMSException {
+                    TextMessage textMessage = session.createTextMessage(itemId + "");
+                    return textMessage;
+                }
+            });
+            mr.setSuccess(true);
+            mr.setMessage("新增1个商品成功");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return mr;
     }
 
 }

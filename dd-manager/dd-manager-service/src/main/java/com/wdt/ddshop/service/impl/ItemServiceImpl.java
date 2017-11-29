@@ -130,25 +130,25 @@ public class ItemServiceImpl implements ItemService {
      */
  @Transactional
     @Override
-    public int saveItem(TbItem tbItem, String content,String paramData) {
-        int i=0;
+    public Long saveItem(TbItem tbItem, String content,String paramData) {
+     Long itemId = null;
         try{
-            Long id= IDUtils.getItemId();
-            tbItem.setId(id);
+         itemId= IDUtils.getItemId();
+            tbItem.setId(itemId);
             tbItem.setStatus((byte)2);
             tbItem.setCreated(new Date());
             tbItem.setUpdated(new Date());
-            i=itemDao.insert(tbItem);
+           int i=itemDao.insert(tbItem);
             TbItemDesc desc=new TbItemDesc();
             desc.setCreated(new Date());
             desc.setUpdated(new Date());
-            desc.setItemId(id);
+            desc.setItemId(itemId);
             desc.setItemDesc(content);
             i+=itemDescDao.insert(desc);
             TbItemParamItem itemParamItem=new TbItemParamItem();
             itemParamItem.setCreated(new Date());
             itemParamItem.setUpdated(new Date());
-            itemParamItem.setItemId(id);
+            itemParamItem.setItemId(itemId);
             itemParamItem.setParamData(paramData);
             i+=itemParamItemDao.insert(itemParamItem);
 
@@ -158,6 +158,6 @@ public class ItemServiceImpl implements ItemService {
             logger.error(e.getMessage(),e);
             e.printStackTrace();
         }
-        return  i;
+        return  itemId;
     }
 }

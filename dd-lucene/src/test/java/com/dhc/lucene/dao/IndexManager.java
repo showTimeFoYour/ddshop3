@@ -98,6 +98,10 @@ public class IndexManager {
         }*/
     }
     @Test
+    public void testArry() throws IOException {
+
+    }
+    @Test
     public void indexDelete() throws IOException {
         //创建分词器，使用Lucene默认分词器
         Analyzer analyzer = new StandardAnalyzer();
